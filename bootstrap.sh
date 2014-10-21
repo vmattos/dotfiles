@@ -35,12 +35,12 @@ sh oh-my-zsh.sh
 
 # Creating files symlinks
 echo ">>> Creating dotfiles symlinks"
-FILES="vimrc zshrc gitconfig"
+FILES="vim zsh git"
 DIR=$PWD
 cd ~
 
 for file in $FILES; do
-  echo "Creating symlink to $file in home directory."
-  ln -s $DIR/$file .$file
+  echo ">>> Configuring $file preferences"
+  sh setup-$file.sh
 done
 
