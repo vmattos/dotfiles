@@ -1,0 +1,40 @@
+# ~/.gitconfig from @boblet
+# initially based on http://rails.wincent.com/wiki/Git_quickstart
+ 
+[core]
+  legacyheaders = false # >git 1.5
+  quotepath = false
+  # http://stackoverflow.com/questions/136178/git-diff-handling-long-lines
+  pager = less -r
+  # if ↑ doesn’t work, try: pager = less -+$LESS -FRX
+[color]
+  ui = auto
+  interactive = auto
+[repack]
+  usedeltabaseoffset = true # >git 1.5
+[alias]
+  s = status
+  a = !git add . && git status
+  au = !git add -u . && git status
+  aa = !git add . && git add -u . && git status
+  c = commit
+  cm = commit -m
+  ca = commit --amend # careful
+  ac = !git add . && git commit
+  acm = !git add . && git commit -m
+  l = log --graph --all --pretty=format:'%C(yellow)%h%C(cyan)%d%Creset %s %C(white)- %an, %ar%Creset'
+  lg = log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all
+  ll = log --stat --abbrev-commit
+  d = diff --color-words
+  dh = diff --color-words head
+  master = checkout master
+  spull = svn rebase
+  spush = svn dcommit
+  alias = !git config --list | grep 'alias\\.' | sed 's/alias\\.\\([^=]*\\)=\\(.*\\)/\\1\\\t => \\2/' | sort
+[user]
+  name = Vitor Mattos
+  email = vitor.mattos@vtex.com.br
+[diff]
+  # git does copy/rename *detection*. if you want it to track copies/renames:
+  # http://stackoverflow.com/questions/1043388/record-file-copy-operation-with-git
+  # renames = copies

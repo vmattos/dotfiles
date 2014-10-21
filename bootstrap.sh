@@ -35,7 +35,7 @@ sh oh-my-zsh.sh
 
 # Creating files symlinks
 echo ">>> Creating dotfiles symlinks"
-FILES="vimrc zshrc"
+FILES="vimrc zshrc gitconfig"
 DIR=$PWD
 cd ~
 
