@@ -6,8 +6,8 @@ sudo sh setup.sh
 
 # Setup favorite terminal theme
 echo ">>> Setting terminal theme"
-git clone https://gist.github.com/f321e3d76d89806b3507.git terminal-theme
-sh terminal-theme/theme.sh
+git clone https://gist.github.com/f321e3d76d89806b3507.git ~/terminal-theme
+sh ~/terminal-theme/theme.sh
 
 # Setting up vim.rc
 
