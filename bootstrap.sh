@@ -32,6 +32,11 @@ echo ">>> Setting up custom oh-my-zsh"
 # wget --no-check-certificate http://install.ohmyz.sh -O oh-my-zsh.sh
 sh oh-my-zsh.sh
 
+# Creating backup dotfiles dir
+DOTFILES_OLD=$HOME/dotfiles_old
+if [ ! -d $DOTFILES_OLD ]
+  mkdir $DOTFILES_OLD
+fi
 
 # Creating files symlinks
 echo ">>> Creating dotfiles symlinks"
