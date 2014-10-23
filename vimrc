@@ -47,6 +47,17 @@ else
   let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 endif
 
+" Automatically opens NERDTree plugin
+autocmd vimenter * NERDTree
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists("s:std_id") | NERDTree | endif
+
+" Opens NERDTree plugin with Ctrl+n
+map <C-n> :NERDTreeToggle<CR>
+
+" Closes Vim if left pane is NERDTree
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+
 " Sets backup directory
 set backup
 set backupdir=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
