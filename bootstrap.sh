@@ -2,7 +2,7 @@
 
 
 # Install essential packages
-sudo sh setup.sh
+sudo sh install-essentials.sh
 
 # Setup favorite terminal theme
 echo ">>> Setting terminal theme"
