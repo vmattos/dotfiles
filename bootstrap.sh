@@ -3,6 +3,7 @@
 
 # Install essential packages
 sudo sh install-essentials.sh
+. ./setup.sh
 
 # Setup favorite terminal theme
 echo ">>> Setting terminal theme"
@@ -32,19 +33,10 @@ echo ">>> Setting up custom oh-my-zsh"
 # wget --no-check-certificate http://install.ohmyz.sh -O oh-my-zsh.sh
 sh oh-my-zsh.sh
 
-# Creating backup dotfiles dir
-DOTFILES_OLD=$HOME/dotfiles_old
-if [ ! -d $DOTFILES_OLD ]
-  mkdir $DOTFILES_OLD
-fi
-
 # Creating files symlinks
 echo ">>> Creating dotfiles symlinks"
-FILES="vim zsh git"
-DIR=$PWD
-cd ~
 
-for file in $FILES; do
+for file in $DOTFILES; do
   echo ">>> Configuring $file preferences"
   sh setup-$file.sh
 done

@@ -1,10 +1,8 @@
 #!/bin/bash
 
-echo ">>> Configuring VIM preferences"
+. ./setup.sh
 
 cd ~
-
-VIM_HOME=$HOME/.vim
 
 # Installing pathogen
 if [ ! -d $VIM_HOME/autoload ] && [ ! -d $VIM_HOME/bundle ]; then
@@ -22,15 +20,6 @@ if [ ! -d $VIM_HOME/bundle/nerdtree ]; then
   git clone https://github.com/scrooloose/nerdtree.git $VIM_HOME/bundle/nerdtree
 else
   echo ">>> NERDTree detected. Skipping"
-fi
-
-# Those conditionals are here so you can use each setup
-# individually without running the bootstrap if you want to
-if [ ! $DOTFILES_OLD ]; then
-  DOTFILES_OLD=$HOME/dotfiles_old 
-  if [ ! -d $DOTFILES_OLD ]; then
-    mkdir $DOTFILES_OLD
-  fi
 fi
 
 if [ -f .vimrc ]; then
