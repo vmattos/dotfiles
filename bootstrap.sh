@@ -1,12 +1,17 @@
 #!/bin/bash
 
+. ./setup.sh
 
 # Install essential packages
 sudo sh install-essentials.sh
-. ./setup.sh
 
 # Setup favorite terminal theme
-echo ">>> Setting terminal theme"
+if [ -d $TERMINAL_THEME_DIR ]; then
+  echo "${blue}Deleting terminal theme directory${reset}"
+  rm -rf $TERMINAL_THEME_DIR
+fi
+
+echo "${green}>>> Setting terminal theme${reset}"
 git clone https://gist.github.com/f321e3d76d89806b3507.git ~/terminal-theme
 sh ~/terminal-theme/theme.sh
 
@@ -14,30 +19,28 @@ sh ~/terminal-theme/theme.sh
 
 # Java
 if hash java 2>/dev/null;then
-  echo ">>> Java is installed. Skipping"
+  echo "${red}>>> Java is installed. Skipping${reset}"
 else
   sudo sh setup-java.sh
 fi
 
 # Ruby
 if hash rbenv 2>/dev/null;then
-  echo ">>> Ruby is installed. Skipping"
+  echo "${red}>>> Ruby is installed. Skipping${reset}"
 else
   sudo sh setup-ruby.sh
 fi
 
 # Set zsh with oh-my-zsh
-echo ">>> Downloading zsh"
+echo "${green}>>> Downloading zsh${reset}"
 sudo apt-get install zsh -y
-echo ">>> Setting up custom oh-my-zsh"
+echo "${green}>>> Setting up custom oh-my-zsh${reset}"
 # wget --no-check-certificate http://install.ohmyz.sh -O oh-my-zsh.sh
 sh oh-my-zsh.sh
 
 # Creating files symlinks
-echo ">>> Creating dotfiles symlinks"
-
 for file in $DOTFILES; do
-  echo ">>> Configuring $file preferences"
+  echo "${green}>>> Configuring $file preferences${reset}"
   sh setup-$file.sh
 done
 

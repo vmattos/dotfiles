@@ -10,3 +10,8 @@ echo 'export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"' >> ~/.bashrc
 $HOME/.rbenv/bin/rbenv install 2.1.2
 $HOME/.rbenv/bin/rbenv global 2.1.2
 ruby -v
+
+echo "${green}>>>"
+echo ">>> Finished installing Ruby"
+echo ">>>"
+echo "${reset}"

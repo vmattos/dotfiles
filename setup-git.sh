@@ -5,8 +5,9 @@
 cd ~
 
 if [ -f .gitconfig ]; then
-  echo ">>> Backuping previously existent .gitconfig to $DOTFILES_OLD"
+  echo "${blue}>>> Backuping previously existent .gitconfig to $DOTFILES_OLD${reset}"
   mv .gitconfig $DOTFILES_OLD
 fi
 
+echo "${yellow}>>> Creating .gitconfig symlink"
 ln -s dotfiles/gitconfig .gitconfig
