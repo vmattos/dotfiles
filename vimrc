@@ -1,3 +1,5 @@
+execute pathogen#infect()
+
 syntax enable
 
 let mapleader=","
@@ -28,6 +30,7 @@ set foldlevelstart=10
 nnoremap <space> za
 
 filetype indent on
+filetype plugin indent on
 
 " Does not jump 'fake' lines
 nnoremap j gj

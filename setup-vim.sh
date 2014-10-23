@@ -1,6 +1,20 @@
 #!/bin/bash
 
+echo ">>> Configuring VIM preferences"
+
 cd ~
+
+VIM_HOME=$HOME/.vim
+
+# Installing pathogen
+if [ ! -d $VIM_HOME/autoload ] && [ ! -d $VIM_HOME/bundle ]; then
+  echo ">>> Installing Pathogen"
+  mkdir $VIM_HOME/autoload
+  mkdir $VIM_HOME/bundle
+  curl -LSso $VIM_HOME/autoload/pathogen.vim https://tpo.pe/pathogen.vim
+else
+  echo ">>> Pathogen detected. Skipping"
+fi
 
 # Those conditionals are here so you can use each setup
 # individually without running the bootstrap if you want to
