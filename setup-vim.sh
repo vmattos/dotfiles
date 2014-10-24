@@ -22,6 +22,13 @@ else
   echo "${red}>>> NERDTree detected. Skipping${reset}"
 fi
 
+# Installing favorite vim theme
+if [ ! -f $VIM_HOME/colors/vmattos.vim ]; then
+  echo "${blue}>>> Installing favorite vim theme${reset}"
+  git clone https://gist.github.com/7ac06a16ae6a1dd4a897.git $VIM_HOME/colors/theme
+  mv $VIM_HOME/colors/theme/vmattos.vim $VIM_HOME/colors
+fi
+
 if [ -f .vimrc ]; then
   echo "${blue}>>> Backuping previously existent .vimrc to $DOTFILES_OLD${reset}"
   mv .vimrc $DOTFILES_OLD

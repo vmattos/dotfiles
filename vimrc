@@ -1,5 +1,7 @@
 execute pathogen#infect()
 
+colorscheme vmattos
+
 syntax enable
 
 let mapleader=","
@@ -18,6 +20,7 @@ set showcmd
 set cursorline
 set wildmenu
 set lazyredraw
+set laststatus=2
 
 set showmatch
 set incsearch
