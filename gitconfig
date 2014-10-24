@@ -13,8 +13,9 @@
 [repack]
   usedeltabaseoffset = true # >git 1.5
 [alias]
+  pom = push origin master
   s = status
-  a = !git add . && git status
+  gad = !git add . && git status
   au = !git add -u . && git status
   aa = !git add . && git add -u . && git status
   c = commit
