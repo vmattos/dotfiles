@@ -6,4 +6,4 @@ apt-get -y install oracle-java7-installer
 echo "${green}>>>"
 echo ">>> Finished installing Java."
 echo ">>>"
-ehco "${reset}"
+echo "${reset}"

@@ -31,6 +31,14 @@ else
   sudo sh setup-ruby.sh
 fi
 
+# NodeJS
+if hash node 2>/dev/null;then
+  echo "${red}>>> NodeJS is installed. SKipping${reset}"
+else
+  sudo sh setup-node.sh
+  sudo sh setup-node-link-sudo.sh
+fi
+
 # Set zsh with oh-my-zsh
 echo "${green}>>> Downloading zsh${reset}"
 sudo apt-get install zsh -y
