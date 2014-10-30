@@ -29,6 +29,14 @@ if [ ! -f $VIM_HOME/colors/vmattos.vim ]; then
   mv $VIM_HOME/colors/theme/vmattos.vim $VIM_HOME/colors
 fi
 
+# Installing vim-coffee-script
+if [ ! -d $VIM_HOME/bundle/vim-coffee-script ]; then
+  echo "${blue}>>> Installing vim-coffee-script"
+  git clone https://github.com/kchmck/vim-coffee-script.git $VIM_HOME/bundle/vim-coffee-script/
+else
+  echo "${red}>>> vim-coffee-script detected. Skipping${reset}"
+fi
+
 if [ -f .vimrc ]; then
   echo "${blue}>>> Backuping previously existent .vimrc to $DOTFILES_OLD${reset}"
   mv .vimrc $DOTFILES_OLD
