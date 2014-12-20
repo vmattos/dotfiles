@@ -1,3 +1,5 @@
+set nocompatible 
+
 execute pathogen#infect()
 
 colorscheme vmattos
@@ -21,12 +23,14 @@ set cursorline
 set wildmenu
 set lazyredraw
 set laststatus=2
-
 set showmatch
 set incsearch
 set hlsearch
+
 " Clears highlighted matches with ,<space>
 nnoremap <leader><space> :nohlsearch<CR> 
+
+map <leader>c :CoffeeCompile<CR>
 
 set foldenable
 set foldlevelstart=10

@@ -22,6 +22,14 @@ else
   echo "${red}>>> NERDTree detected. Skipping${reset}"
 fi
 
+# Installing vim-coffee-script
+if [ ! -d $VIM_HOME/bundle/vim-coffee-script ]; then
+  echo "${blue}>>> Installing vim-coffee-script${reset}"
+  git clone https://github.com/kchmck/vim-coffee-script.git $VIM_HOME/bundle/vim-coffee-script/
+else
+  echo "${red}>>> vim-coffee-script detected. Skipping${reset}"
+fi
+
 # Installing favorite vim theme
 if [ ! -f $VIM_HOME/colors/vmattos.vim ]; then
   echo "${blue}>>> Installing favorite vim theme"

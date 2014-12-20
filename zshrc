@@ -54,7 +54,6 @@ source $ZSH/oh-my-zsh.sh
 export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games"
 export PATH="$HOME/.rbenv/bin:$PATH" # rbenv
 export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH" # rbenv ruby-build
-eval "$(rbenv init -)"
 
 # export MANPATH="/usr/local/man:$MANPATH"
 
