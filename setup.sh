@@ -1,6 +1,6 @@
 TERMINAL_THEME_DIR="$HOME/terminal-theme"
 DOTFILES_OLD="$HOME/dotfiles_old"
-DOTFILES="vim zsh git"
+DOTFILES="vim zsh git tmux.conf"
 DOTFILES_DIR="$PWD"
 VIM_HOME="$HOME/.vim"
 
