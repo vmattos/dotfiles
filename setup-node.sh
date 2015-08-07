@@ -8,11 +8,11 @@ echo 'export PATH=$HOME/local/bin:$PATH' >> ~/.bashrc
 
 source $HOME/.bashrc
 
-mkdir ~/local
-mkdir ~/node-latest-install
-cd ~/node-latest-install
+mkdir $HOME/local
+mkdir $HOME/node-latest-install
+cd $HOME/node-latest-install
 curl http://nodejs.org/dist/node-latest.tar.gz | tar xz --strip-components=1
-./configure --prefix=~/local
+./configure --prefix=$HOME/local
 make install
 
 # Source our bash in order to have node at our path.
@@ -20,7 +20,7 @@ make install
 source $HOME/.bashrc
 export PATH=$HOME/local/bin:$PATH
 
-curl https://www.npmjs.org/install.sh | sh
+curl -L https://www.npmjs.org/install.sh | sh
 
 echo "${green}>>>" 
 echo ">>> Finished installing node latest stable." 

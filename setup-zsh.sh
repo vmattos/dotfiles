@@ -10,4 +10,4 @@ if [ -f .zshrc ]; then
 fi
 
 echo "${yellow}>>> Creating .zshrc symlink${reset}"
-ln -s dotfiles/zshrc .zshrc
+ln -s dotfiles-master/zshrc .zshrc

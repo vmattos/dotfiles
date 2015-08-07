@@ -10,4 +10,4 @@ if [ -f .gitconfig ]; then
 fi
 
 echo "${yellow}>>> Creating .gitconfig symlink"
-ln -s dotfiles/gitconfig .gitconfig
+ln -s dotfiles-master/gitconfig .gitconfig

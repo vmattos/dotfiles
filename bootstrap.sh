@@ -2,18 +2,9 @@
 
 . ./setup.sh
 
-# Install essential packages
-sudo sh install-essentials.sh
 
 # Setup favorite terminal theme
-if [ -d $TERMINAL_THEME_DIR ]; then
-  echo "${blue}Deleting terminal theme directory${reset}"
-  rm -rf $TERMINAL_THEME_DIR
-fi
-
-echo "${green}>>> Setting terminal theme${reset}"
-git clone https://gist.github.com/f321e3d76d89806b3507.git ~/terminal-theme
-sh ~/terminal-theme/theme.sh
+sudo sh setup-terminal-preferences.sh
 
 # Setting up vim.rc
 
@@ -38,6 +29,9 @@ else
   sudo sh setup-node.sh
   sudo sh setup-node-link-sudo.sh
 fi
+
+# Go
+sudo sh setup-go.sh
 
 # Set zsh with oh-my-zsh
 echo "${green}>>> Downloading zsh${reset}"

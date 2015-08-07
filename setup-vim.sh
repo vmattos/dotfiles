@@ -45,18 +45,10 @@ else
   echo "${red}>>> vim-coffee-script detected. Skipping${reset}"
 fi
 
-# Installing vim-go
-if [ ! -d $VIM_HOME/bundle/vim-go ]; then
-  echo "${blue}>>> Installing vim-go"
-   git clone https://github.com/fatih/vim-go.git $VIM_HOME/bundle/vim-go
-else
-  echo "${red}>>> vim-go detected. Skipping${reset}"
-fi
-
 if [ -f .vimrc ]; then
   echo "${blue}>>> Backuping previously existent .vimrc to $DOTFILES_OLD${reset}"
   mv .vimrc $DOTFILES_OLD
 fi
 
 echo "${yellow}>>> Creating .vimrc symlink${reset}"
-ln -s dotfiles/vimrc .vimrc
+ln -s dotfiles-master/vimrc .vimrc
