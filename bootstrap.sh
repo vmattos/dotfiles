@@ -2,11 +2,10 @@
 
 . ./setup.sh
 
+sudo sh install-essentials.sh
 
 # Setup favorite terminal theme
 sudo sh setup-terminal-preferences.sh
-
-# Setting up vim.rc
 
 # Java
 if hash java 2>/dev/null;then
