@@ -1,4 +1,4 @@
-set nocompatible 
+set nocompatible
 
 execute pathogen#infect()
 
@@ -30,8 +30,8 @@ set hlsearch
 " Clears highlighted matches with ,<space>
 nnoremap <leader><space> :nohlsearch<CR>
 
-" Compiles Coffeescript
-map <leader>c :CoffeeCompile<CR>
+" Find word under cursor and replace
+nnoremap <Leader>s :%s/\<<C-r><C-w>\>/
 
 set foldenable
 set foldlevelstart=10
@@ -39,6 +39,8 @@ nnoremap <space> za
 
 filetype indent on
 filetype plugin indent on
+
+map <F7> :w !xclip -selection c<CR><CR>
 
 " Does not jump 'fake' lines
 nnoremap j gj
@@ -83,44 +85,52 @@ function! ToggleNumber()
   endif
 endfunc
 
+" Compiles Coffeescript
+ map <leader>c :CoffeeCompile<CR>
+
 " Go-vim plugin
-let g:go_highlight_functions = 1
-let g:go_highlight_methods = 1
-let g:go_highlight_structs = 1
-let g:go_highlight_operators = 1
-let g:go_highlight_build_constraints = 1
-let g:go_auto_type_info = 0
-let g:go_highlight_trailing_whitespace_error = 0
-let g:go_fmt_command = "goimports"
+ let g:go_highlight_functions = 1
+ let g:go_highlight_methods = 1
+ let g:go_highlight_structs = 1
+ let g:go_highlight_operators = 1
+ let g:go_highlight_build_constraints = 1
+ let g:go_auto_type_info = 1
+ let g:go_highlight_trailing_whitespace_error = 1
+ let g:go_fmt_command = "goimports"
 
 " Emmet plugin
-let g:user_emmet_leader_key='<C-C>'
+ let g:user_emmet_leader_key='<C-C>'
 
 " YouCompleteMe plugin
-let g:ycm_add_preview_to_completeopt = 1
-let g:ycm_autoclose_preview_window_after_insertion = 1
+ let g:ycm_add_preview_to_completeopt = 1
+ let g:ycm_autoclose_preview_window_after_insertion = 1
 
 " Airline plugin
-let g:airline_theme = 'badwolf'
-let g:airline_powerline_fonts = 1
+ let g:airline_theme = 'badwolf'
+ let g:airline_powerline_fonts = 1
 
 " NERDTree & NERDTree tabs plugins
-let g:nerdtree_tabs_open_on_console_startup = 1
-let g:nerdtree_tabs_focus_on_files = 1
+ let g:nerdtree_tabs_open_on_console_startup = 1
+ let g:nerdtree_tabs_focus_on_files = 1
 
 " Ultisnips
-let g:UltiSnipsExpandTrigger="<c-j>"
-let g:UltiSnipsJumpForwardTrigger="<c-n>"
-let g:UltiSnipsJumpBackwardTrigger="<c-p>"
+ let g:UltiSnipsExpandTrigger="<c-j>"
+ let g:UltiSnipsJumpForwardTrigger="<c-n>"
+ let g:UltiSnipsJumpBackwardTrigger="<c-p>"
 
 " Syntastic plugin
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
+ set statusline+=%#warningmsg#
+ set statusline+=%{SyntasticStatuslineFlag()}
+ set statusline+=%*
+ let g:syntastic_always_populate_loc_list = 1
+ let g:syntastic_auto_loc_list = 1
+ let g:syntastic_check_on_open = 1
+ let g:syntastic_check_on_wq = 1
+" let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck']
+" let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go'] }
+
+" Tagbar plugin
+nmap <F8> :TagbarToggle<CR>
 
 " Tabs shortcuts
 nmap  <F9>          :tabclose<CR>
