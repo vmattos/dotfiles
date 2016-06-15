@@ -4,9 +4,9 @@
 
 echo "${yellow}Installing node latest stable${reset}"
 
-echo 'export PATH=$HOME/local/bin:$PATH' >> ~/.bashrc
+echo "$HOME"
 
-source $HOME/.bashrc
+source $HOME/.zshrc
 
 mkdir $HOME/local
 mkdir $HOME/node-latest-install
@@ -17,7 +17,7 @@ make install
 
 # Source our bash in order to have node at our path.
 # Otherwise, the npm script will fail.
-source $HOME/.bashrc
+source $HOME/.zshrc
 export PATH=$HOME/local/bin:$PATH
 
 curl -L https://www.npmjs.org/install.sh | sh

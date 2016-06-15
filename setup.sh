@@ -4,6 +4,8 @@ DOTFILES="zsh git tmux.conf"
 DOTFILES_DIR="$PWD"
 VIM_HOME="$HOME/.vim"
 
+echo "$HOME"
+
 # Terminal colors
 red=$(tput setaf 1)
 green=$(tput setaf 2)

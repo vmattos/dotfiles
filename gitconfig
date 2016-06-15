@@ -13,6 +13,8 @@
 [repack]
   usedeltabaseoffset = true # >git 1.5
 [alias]
+  d = !git diff --color=always | grep --color=never .
+  dc = !git diff --cached --color=always | grep --color=never .
   pom = push origin master
   s = status
   gad = !git add . && git status
@@ -26,7 +28,6 @@
   l = log --graph --all --pretty=format:'%C(yellow)%h%C(cyan)%d%Creset %s %C(white)- %an, %ar%Creset'
   lg = log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all
   ll = log --stat --abbrev-commit
-  d = difftool
   dh = difftool head
   master = checkout master
   spull = svn rebase

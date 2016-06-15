@@ -5,7 +5,8 @@ export ZSH=$HOME/.oh-my-zsh
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="robbyrussell"
+# ZSH_THEME="robbyrussell"
+ZSH_THEME="tonotdo"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -45,7 +46,22 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git)
+plugins=(
+  git
+  aws
+  catimg
+  colored-man
+  colorize
+  docker
+  extract
+  iwhois
+  nyan
+  thefuck
+  urltools
+  vagrant
+  web-search
+  z
+)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -65,6 +81,7 @@ if [[ -n $SSH_CONNECTION ]]; then
   export EDITOR='vim'
 else
   export EDITOR='vim'
+
 fi
 
 # Compilation flags
@@ -80,10 +97,25 @@ export TERM=xterm-256color
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
-#
+
+# Locksmith paths
+export LOCKSMITH_DIR=$HOME/projetos/locksmith
+export APPSETTINGS_PATH=$LOCKSMITH_DIR/locksmith/output/appsettings.config
+export LOCKSMITH=$APPSETTINGS_PATH
+
 # Example aliases
-# alias zshconfig="mate ~/.zshrc"
+ alias zshconfig="vim ~/.zshrc"
+ alias locksmith="source $LOCKSMITH_DIR/venv/bin/activate; python $LOCKSMITH_DIR/locksmith/main.py"
+ alias locksmith-export="source $HOME/export_locksmith_keys.sh"
+ alias cc="xclip -selection clipboard"
+ alias more="colorize"
+ alias descmpl="$HOME/dscpl-d.sh"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+
+export GOPATH=$HOME/gocode
+
 export PATH=$HOME/local/bin:$PATH
-export PATH=$HOME/local/bin:$PATH
-export PATH=$HOME/local/bin:$PATH
+export PATH=$PATH:/usr/local/go/bin:$HOME/gocode/bin
+
+export NVM_DIR="/home/vitormattos/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
