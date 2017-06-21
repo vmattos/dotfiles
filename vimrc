@@ -1,6 +1,6 @@
-set nocompatible
-
 execute pathogen#infect()
+
+set nocompatible
 
 colorscheme molokai
 
@@ -49,6 +49,9 @@ nnoremap k gk
 " Uses ,. instead of esc
 inoremap <leader>. <esc>
 
+" Removes trailing white space with F5
+nnoremap <silent> <F5> :let _s=@/ <Bar> :%s/\s\+$//e <Bar> :let @/=_s <Bar> :nohl <Bar> :unlet _s <CR>
+
 if exists('$TMUX')
   let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
   let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
@@ -74,6 +77,8 @@ set backupdir=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 set backupskip=/tmp/*,/private/tmp/*
 set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 set writebackup
+set backspace=indent,eol,start
+
 
 " Toggles between number and relativenumber
 function! ToggleNumber()
@@ -87,6 +92,9 @@ endfunc
 
 " Compiles Coffeescript
  map <leader>c :CoffeeCompile<CR>
+
+" Flow hightlight
+let g:javascript_plugin_flow = 1
 
 " Go-vim plugin
  let g:go_highlight_functions = 1
@@ -119,13 +127,15 @@ endfunc
  let g:UltiSnipsJumpBackwardTrigger="<c-p>"
 
 " Syntastic plugin
- set statusline+=%#warningmsg#
- set statusline+=%{SyntasticStatuslineFlag()}
- set statusline+=%*
- let g:syntastic_always_populate_loc_list = 1
- let g:syntastic_auto_loc_list = 1
- let g:syntastic_check_on_open = 1
- let g:syntastic_check_on_wq = 1
+ "set statusline+=%#warningmsg#
+ "set statusline+=%{SyntasticStatuslineFlag()}
+ "set statusline+=%*
+ "let g:syntastic_always_populate_loc_list = 1
+ "let g:syntastic_auto_loc_list = 1
+ "let g:syntastic_check_on_open = 0
+ "let g:syntastic_check_on_wq = 0
+ "let g:syntastic_javascript_checkers=['eslint']
+ "let g:syntastic_javascript_eslint_exe='$(npm bin)/eslint'
 " let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck']
 " let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go'] }
 
@@ -136,3 +146,10 @@ nmap <F8> :TagbarToggle<CR>
 nmap  <F9>          :tabclose<CR>
 nmap H              :tabp<CR>
 nmap L              :tabn<CR>
+
+function! ClearRegs()
+  let regs=split('abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789/-"', '\zs')
+  for r in regs
+    call setreg(r, [])
+  endfor
+endfunc
