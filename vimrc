@@ -153,3 +153,60 @@ function! ClearRegs()
     call setreg(r, [])
   endfor
 endfunc
+
+ "call plug#begin('~/.vim/plugged')
+" 
+" Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+" Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
+" 
+" Plug 'tpope/vim-fugitive'
+" 
+" Plug 'scrooloose/syntastic'
+" 
+" Plug 'tpope/vim-surround'
+" 
+" Plug 'altercation/vim-colors-solarized'
+" 
+" Plug 'bling/vim-airline'
+" 
+" Plug 'majutsushi/tagbar'
+" 
+" Plug 'thaerkh/vim-workspace'
+" 
+" Plug 'scrooloose/nerdcommenter'
+" 
+" Plug 'airblade/vim-gitgutter'
+" 
+" Plug 'valloric/youcompleteme'
+" 
+" Plug 'vim-airline/vim-airline-themes'
+" 
+" Plug 'pangloss/vim-javascript'
+" 
+" Plug 'easymotion/vim-easymotion'
+" 
+" Plug 'godlygeek/tabular'
+" 
+" Plug 'ervandew/supertab'
+" 
+" Plug 'flazz/vim-colorschemes'
+" 
+" Plug 'terryma/vim-multiple-cursors'
+" 
+" Plug 'sjl/gundo.vim'
+" 
+" Plug 'plasticboy/vim-markdown'
+" 
+" Plug 'marcweber/vim-addon-mw-utils'
+" 
+" Plug 'christoomey/vim-tmux-navigator'
+" 
+" Plug 'w0rp/ale'
+" 
+"Plug 'scrooloose/nerdtree'
+" 
+ "Plug 'Xuyuanp/nerdtree-git-plugin'
+" 
+ "Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+" 
+" Plug 'ryanoasis/vim-devicons'

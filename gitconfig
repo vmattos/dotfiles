@@ -13,8 +13,9 @@
 [repack]
   usedeltabaseoffset = true # >git 1.5
 [alias]
-  d = !git diff --color=always | grep --color=never .
-  dc = !git diff --cached --color=always | grep --color=never .
+	d = difftool
+  dc = !git --no-pager diff --cached
+  dcp = !git dc && git diff --cached
   pom = push origin master
   s = status
   gad = !git add . && git status
@@ -35,7 +36,7 @@
   alias = !git config --list | grep 'alias\\.' | sed 's/alias\\.\\([^=]*\\)=\\(.*\\)/\\1\\\t => \\2/' | sort
 [user]
   name = Vitor Mattos
-  email = vitor.mattos@vtex.com.br
+  email = vitor.cavalcanti@olxbr.com
 [diff]
   # git does copy/rename *detection*. if you want it to track copies/renames:
   # http://stackoverflow.com/questions/1043388/record-file-copy-operation-with-git
@@ -46,3 +47,8 @@
 	prompt = false
 [credential]
 	helper = cache
+[merge]
+	tool = vimdiff
+	conflictstyle = diff3
+[mergetool]
+	prompt = false
