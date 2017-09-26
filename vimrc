@@ -1,12 +1,47 @@
-execute pathogen#infect()
+call plug#begin()
+Plug 'flazz/vim-colorschemes'
+Plug 'sjl/gundo.vim'
+Plug 'scrooloose/nerdcommenter'
+Plug 'easymotion/vim-easymotion'
+Plug 'tpope/vim-sleuth'
+Plug 'valloric/youcompleteme'
+Plug 'ternjs/tern_for_vim'
+Plug 'w0rp/ale'
+Plug 'godlygeek/tabular'
+Plug 'majutsushi/tagbar'
+Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
+Plug 'rking/ag.vim'
+Plug 'tpope/vim-surround'
+Plug 'Raimondi/delimitMate'
+Plug 'sheerun/vim-polyglot'
+Plug 'pangloss/vim-javascript'
+Plug 'tpope/vim-repeat'
+Plug 'mattn/emmet-vim'
+Plug 'tpope/vim-fugitive'
+Plug 'airblade/vim-gitgutter'
+Plug 'bling/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'scrooloose/nerdtree'
+Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+Plug 'ryanoasis/vim-devicons'
+Plug 'szw/vim-maximizer'
+call plug#end()
 
 set nocompatible
+set encoding=utf8
 
-colorscheme molokai
+set t_Co=256
+
+set backspace=indent,eol,start
 
 syntax enable
 
+filetype plugin on
+
 let mapleader=","
+
+colorscheme gruvbox
 
 set tabstop=2
 set softtabstop=2
@@ -27,6 +62,16 @@ set showmatch
 set incsearch
 set hlsearch
 
+set guifont=Sauce\ Code\ Pro\ Medium\ Nerd\ Font\ Complete\ Mono:h14
+
+" Sets backup directory
+set backup
+set backupdir=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
+set backupskip=/tmp/*,/private/tmp/*
+set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
+set writebackup
+set backspace=indent,eol,start
+
 " Clears highlighted matches with ,<space>
 nnoremap <leader><space> :nohlsearch<CR>
 
@@ -37,10 +82,12 @@ set foldenable
 set foldlevelstart=10
 nnoremap <space> za
 
-filetype indent on
-filetype plugin indent on
-
 map <F7> :w !xclip -selection c<CR><CR>
+
+nnoremap <leader>u :GundoToggle<CR>
+
+map H :tabp<CR>
+map L :tabn<CR>
 
 " Does not jump 'fake' lines
 nnoremap j gj
@@ -52,161 +99,45 @@ inoremap <leader>. <esc>
 " Removes trailing white space with F5
 nnoremap <silent> <F5> :let _s=@/ <Bar> :%s/\s\+$//e <Bar> :let @/=_s <Bar> :nohl <Bar> :unlet _s <CR>
 
-if exists('$TMUX')
-  let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
-  let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
-else
-  let &t_SI = "\<Esc>]50;CursorShape=1\x7"
-let &t_EI = "\<Esc>]50;CursorShape=0\x7"
-endif
-
 " Automatically opens NERDTree plugin
 " autocmd vimenter * NERDTree         " Opens NERDTree automatically
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 0 && !exists("s:std_id") | NERDTree | endif
+" autocmd StdinReadPre * let s:std_in=1
+" autocmd VimEnter * if argc() == 0 && !exists("s:std_id") | NERDTree | endif
 
 " Opens NERDTree plugin with Ctrl+n
 map <C-n> :NERDTreeToggle<CR>
+nnoremap <leader>n :NERDTreeFind<CR>
 
 " Closes Vim if left pane is NERDTree
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 
-" Sets backup directory
-set backup
-set backupdir=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
-set backupskip=/tmp/*,/private/tmp/*
-set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
-set writebackup
-set backspace=indent,eol,start
+let g:NERDTreePatternMatchHighlightFullName = 1
+let g:NERDTreeHighlightFolders = 1 " enables folder icon highlighting using exact match
+let g:NERDTreeHighlightFoldersFullName = 1 " highlights the folder name
+let g:NERDTreeLimitedSyntax = 1
 
+" Airline
+let g:airline_powerline_fonts = 1
+let g:airline_theme = 'deus'
 
-" Toggles between number and relativenumber
-function! ToggleNumber()
-  if(&relativenumber == 1)
-    set norelativenumber
-    set number
-  else
-    set number
-  endif
-endfunc
+" Uses ctrl-p to invoke FZF
+nnoremap <C-p> :FZF<CR>
 
-" Compiles Coffeescript
- map <leader>c :CoffeeCompile<CR>
+" Leader a opens ag
+nnoremap <Leader>a :Ag 
 
-" Flow hightlight
-let g:javascript_plugin_flow = 1
-
-" Go-vim plugin
- let g:go_highlight_functions = 1
- let g:go_highlight_methods = 1
- let g:go_highlight_structs = 1
- let g:go_highlight_operators = 1
- let g:go_highlight_build_constraints = 1
- let g:go_auto_type_info = 1
- let g:go_highlight_trailing_whitespace_error = 1
- let g:go_fmt_command = "goimports"
-
-" Emmet plugin
- let g:user_emmet_leader_key='<C-C>'
-
-" YouCompleteMe plugin
- let g:ycm_add_preview_to_completeopt = 1
- let g:ycm_autoclose_preview_window_after_insertion = 1
-
-" Airline plugin
- let g:airline_theme = 'badwolf'
- let g:airline_powerline_fonts = 1
-
-" NERDTree & NERDTree tabs plugins
- let g:nerdtree_tabs_open_on_console_startup = 1
- let g:nerdtree_tabs_focus_on_files = 1
-
-" Ultisnips
- let g:UltiSnipsExpandTrigger="<c-j>"
- let g:UltiSnipsJumpForwardTrigger="<c-n>"
- let g:UltiSnipsJumpBackwardTrigger="<c-p>"
-
-" Syntastic plugin
- "set statusline+=%#warningmsg#
- "set statusline+=%{SyntasticStatuslineFlag()}
- "set statusline+=%*
- "let g:syntastic_always_populate_loc_list = 1
- "let g:syntastic_auto_loc_list = 1
- "let g:syntastic_check_on_open = 0
- "let g:syntastic_check_on_wq = 0
- "let g:syntastic_javascript_checkers=['eslint']
- "let g:syntastic_javascript_eslint_exe='$(npm bin)/eslint'
-" let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck']
-" let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go'] }
-
-" Tagbar plugin
+" Tagbar
 nmap <F8> :TagbarToggle<CR>
+let g:Tlist_Ctags_Cmd='/usr/local/Cellar/ctags/5.8_1/bin/ctags'
 
-" Tabs shortcuts
-nmap  <F9>          :tabclose<CR>
-nmap H              :tabp<CR>
-nmap L              :tabn<CR>
+" Easymotion
+hi link EasyMotionTarget EasyMotionTargetDefault 
 
-function! ClearRegs()
-  let regs=split('abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789/-"', '\zs')
-  for r in regs
-    call setreg(r, [])
-  endfor
-endfunc
+" Maximizer
+nnoremap <silent><F3> :MaximizerToggle<CR>
+vnoremap <silent><F3> :MaximizerToggle<CR>gv
+inoremap <silent><F3> <C-o>:MaximizerToggle<CR>
 
- "call plug#begin('~/.vim/plugged')
-" 
-" Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-" Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
-" 
-" Plug 'tpope/vim-fugitive'
-" 
-" Plug 'scrooloose/syntastic'
-" 
-" Plug 'tpope/vim-surround'
-" 
-" Plug 'altercation/vim-colors-solarized'
-" 
-" Plug 'bling/vim-airline'
-" 
-" Plug 'majutsushi/tagbar'
-" 
-" Plug 'thaerkh/vim-workspace'
-" 
-" Plug 'scrooloose/nerdcommenter'
-" 
-" Plug 'airblade/vim-gitgutter'
-" 
-" Plug 'valloric/youcompleteme'
-" 
-" Plug 'vim-airline/vim-airline-themes'
-" 
-" Plug 'pangloss/vim-javascript'
-" 
-" Plug 'easymotion/vim-easymotion'
-" 
-" Plug 'godlygeek/tabular'
-" 
-" Plug 'ervandew/supertab'
-" 
-" Plug 'flazz/vim-colorschemes'
-" 
-" Plug 'terryma/vim-multiple-cursors'
-" 
-" Plug 'sjl/gundo.vim'
-" 
-" Plug 'plasticboy/vim-markdown'
-" 
-" Plug 'marcweber/vim-addon-mw-utils'
-" 
-" Plug 'christoomey/vim-tmux-navigator'
-" 
-" Plug 'w0rp/ale'
-" 
-"Plug 'scrooloose/nerdtree'
-" 
- "Plug 'Xuyuanp/nerdtree-git-plugin'
-" 
- "Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
-" 
-" Plug 'ryanoasis/vim-devicons'
+" ALE
+nmap <silent> <C-k> <Plug>(ale_previous_wrap)
+nmap <silent> <C-j> <Plug>(ale_next_wrap)
