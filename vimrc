@@ -245,7 +245,6 @@ vnoremap <Leader>ir :call IndentReact()<CR>
 " Disables syntax highlight
 function! DisableHL()
   syntax off
-  set nohlsearch
   set t_Co=0
   hi LineNr term=NONE
 endfunction
@@ -253,7 +252,6 @@ endfunction
 " Enables syntax highlight
 function! EnableHL()
   syntax on
-  set hlsearch
   set t_Co=256
   hi LineNr term=underline
 endfunction
