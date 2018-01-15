@@ -5,17 +5,17 @@
   legacyheaders = false # >git 1.5
   quotepath = false
   # http://stackoverflow.com/questions/136178/git-diff-handling-long-lines
-  pager = less -r
+	pager = diff-so-fancy | less --tabs=4 -RFX
 	excludesfile = /Users/vitor.cavalcanti/.gitignore
   # if ↑ doesn’t work, try: pager = less -+$LESS -FRX
 [color]
-  ui = auto
+	ui = true
   interactive = auto
 [repack]
   usedeltabaseoffset = true # >git 1.5
 [alias]
-	d = difftool
-  dc = !git --no-pager diff --cached
+  d = difftool
+  dc = !git diff --cached
   dcp = !git dc && git diff --cached
   pom = push origin master
   s = status
@@ -35,6 +35,9 @@
   spull = svn rebase
   spush = svn dcommit
   alias = !git config --list | grep 'alias\\.' | sed 's/alias\\.\\([^=]*\\)=\\(.*\\)/\\1\\\t => \\2/' | sort
+  prune = !git remote prune origin
+  branchd= !git branch | egrep -v '\\*|master|dev' | xargs git branch -D
+  pruned = !git prune && git branchd
 [user]
   name = Vitor Mattos
   email = vitor.cavalcanti@olxbr.com
@@ -53,3 +56,15 @@
 	conflictstyle = diff3
 [mergetool]
 	prompt = false
+[color "diff-highlight"]
+	oldNormal = red bold
+	oldHighlight = red bold 52
+	newNormal = green bold
+	newHighlight = green bold 22
+[color "diff"]
+	meta = 227
+	frag = magenta bold
+	commit = 227 bold
+	old = red bold
+	new = green bold
+	whitespace = red reverse
