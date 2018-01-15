@@ -1,6 +1,6 @@
 " Plugins
 call plug#begin()
-Plug 'jeffreytierney/VimDiesel'
+Plug 'sjl/gundo.vim'
 Plug 'flazz/vim-colorschemes'
 Plug 'sjl/gundo.vim'
 Plug 'scrooloose/nerdcommenter'
@@ -197,5 +197,65 @@ if filereadable(gitignore)
 endif
 let g:gutentags_ctags_exclude = map(gutentags_ignore, "v:val =~ '/$' ? v:val . '**' : v:val")
 
-" Startify
-let g:startify_bookmarks = [ {'c': '~/.vimrc'}, '~/.zshrc' ]
+" Maps leader b to FZF buffers
+nmap <Leader>b :Buffers<CR>
+
+" 
+" Asgardian macros
+"
+
+" Organize range by length
+function! SortLines() range
+  silent! execute a:firstline . ',' . a:lastline . 's/^\(.*\)$/\=strdisplaywidth(submatch(0)) . " " . submatch(0)/'
+  silent! execute a:firstline . ',' . a:lastline . 'sort n'
+  silent! execute a:firstline . ',' . a:lastline . 's/^\d\+\s//'
+endfunction
+
+" Indent a React component's jsx code
+function! IndentReact()
+  silent! execute 's/\v\<\w+\zs\s\ze|\zs\s\ze\w+\=|("|})\zs\s\ze\w+/\="\n" . matchstr(getline("."), ''^\s*'') . "  "/g'
+  silent! execute 's/\v\s?(\/?\>)/\="\n" . matchstr(getline("."), ''^\s*'') . submatch(1)/'
+  normal <<
+  silent! execute 's/\v\zs(\>)\ze.+/\=submatch(1) . "\n" . matchstr(getline("."), ''^\s*'')/'
+  normal >>
+  silent! execute 's/\v(\<\/\w+\>)$/\="\n" . matchstr(getline("."), ''^\s*'') . submatch(1)/'
+  normal <<
+endfunction
+
+" Indent a long javascript import statement
+function! IndentImport()
+  silent! execute 's/\v\{\zs\ze/\="\n" .  "  "/g'
+  silent! execute 's/\v\w+,\zs\s?\ze/\="\n" .  "  "/g'
+  silent! execute 's/\v\zs\ze\}/\=",\n"/g'
+endfunction
+
+" Leader s sorts range by length
+vnoremap <Leader>S :call SortLines()<CR>
+
+" Leader ii indents a import statement
+vnoremap <Leader>ii :call IndentImport()<CR> kvi{ :call SortLines()<CR>
+
+" Leader ir indents a JSX component
+vnoremap <Leader>ir :call IndentReact()<CR>
+
+"
+" Default highlight options
+"
+
+" Disables syntax highlight
+function! DisableHL()
+  syntax off
+  set nohlsearch
+  set t_Co=0
+  hi LineNr term=NONE
+endfunction
+
+" Enables syntax highlight
+function! EnableHL()
+  syntax on
+  set hlsearch
+  set t_Co=256
+  hi LineNr term=underline
+endfunction
+
+call DisableHL()
