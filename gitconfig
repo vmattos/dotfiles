@@ -1,70 +1,60 @@
-# ~/.gitconfig from @boblet
-# initially based on http://rails.wincent.com/wiki/Git_quickstart
- 
 [core]
   legacyheaders = false # >git 1.5
   quotepath = false
   # http://stackoverflow.com/questions/136178/git-diff-handling-long-lines
-	pager = diff-so-fancy | less --tabs=4 -RFX
-	excludesfile = /Users/vitor.cavalcanti/.gitignore
+  pager = diff-so-fancy | less --tabs=4 -RFX
+  excludesfile = /Users/vitor.cavalcanti/.gitignore
   # if ↑ doesn’t work, try: pager = less -+$LESS -FRX
 [color]
-	ui = true
+  ui = true
   interactive = auto
 [repack]
   usedeltabaseoffset = true # >git 1.5
 [alias]
-  d = difftool
   dc = !git diff --cached
   dcp = !git dc && git diff --cached
   pom = push origin master
   s = status
-  gad = !git add . && git status
-  au = !git add -u . && git status
-  aa = !git add . && git add -u . && git status
-  c = commit
   cm = commit -m
-  ca = commit --amend # careful
-  ac = !git add . && git commit
-  acm = !git add . && git commit -m
   l = log --graph --all --pretty=format:'%C(yellow)%h%C(cyan)%d%Creset %s %C(white)- %an, %ar%Creset'
   lg = log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all
   ll = log --stat --abbrev-commit
   dh = difftool head
   master = checkout master
-  spull = svn rebase
-  spush = svn dcommit
+  pb = !git push origin `git branch | grep \"*\" | awk '{print $2}'`
   alias = !git config --list | grep 'alias\\.' | sed 's/alias\\.\\([^=]*\\)=\\(.*\\)/\\1\\\t => \\2/' | sort
-  prune = !git remote prune origin
-  branchd= !git branch | egrep -v '\\*|master|dev' | xargs git branch -D
-  pruned = !git prune && git branchd
+  #
+  # I have killed an entire civilization with these commands
+  # Their power is way too big for a human being to handle
+  #
+  # prune = !git remote prune origin
+  # branchd= !git branch | egrep -v '\\*|master|dev' | xargs git branch -D
+  # pruned = !git prune && git branchd
 [user]
-  name = Vitor Mattos
-  email = vitor.cavalcanti@olxbr.com
+	name = Vitor Mattos
+	email = vitor.cavalcanti@olxbr.com
 [diff]
-  # git does copy/rename *detection*. if you want it to track copies/renames:
-  # http://stackoverflow.com/questions/1043388/record-file-copy-operation-with-git
-  # renames = copies
-[diff]
-	tool = vimdiff
+  tool = vimdiff
 [difftool]
-	prompt = false
+  prompt = false
 [credential]
-	helper = cache
+  helper = cache
 [merge]
-	tool = vimdiff
-	conflictstyle = diff3
+  tool = vimdiff
+  conflictstyle = diff3
 [mergetool]
-	prompt = false
+  prompt = false
 [color "diff-highlight"]
-	oldNormal = red bold
-	oldHighlight = red bold 52
-	newNormal = green bold
-	newHighlight = green bold 22
+  oldNormal = red bold
+  oldHighlight = red bold 52
+  newNormal = green bold
+  newHighlight = green bold 22
 [color "diff"]
-	meta = 227
-	frag = magenta bold
-	commit = 227 bold
-	old = red bold
-	new = green bold
-	whitespace = red reverse
+  meta = 227
+  frag = magenta bold
+  commit = 227 bold
+  old = red bold
+  new = green bold
+  whitespace = red reverse
+[help]
+  autocorrect = 1

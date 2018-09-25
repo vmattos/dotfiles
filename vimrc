@@ -35,6 +35,9 @@ Plug 'szw/vim-maximizer'
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
 Plug 'junegunn/vim-after-object'
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
+Plug 'prettier/vim-prettier', { 'do': 'yarn install', 'for': ['javascript', 'typescript', 'css', 'graphql'] }
 call plug#end()
 
 set nocompatible
@@ -134,6 +137,10 @@ endif
 let g:airline_powerline_fonts = 1
 let g:airline_theme = 'deus'
 
+" FZF config
+let g:rg_command = 'rg --column --line-number --no-heading --ignore-case --hidden --follow --color=always --ignore-file ~/.agignore '
+command! -bang -nargs=* Rg call fzf#vim#grep(g:rg_command.shellescape(<q-args>), 1, <bang>0)
+
 " Uses ctrl-p to invoke FZF
 nnoremap <C-p> :FZF<CR>
 
@@ -200,6 +207,17 @@ let g:gutentags_ctags_exclude = map(gutentags_ignore, "v:val =~ '/$' ? v:val . '
 " Maps leader b to FZF buffers
 nmap <Leader>b :Buffers<CR>
 
+" UltiSnips
+let g:UltiSnipsExpandTrigger="<c-o>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
+" Prettier
+let g:prettier#exec_cmd_async = 1
+let g:prettier#quickfix_auto_focus = 0
+let g:prettier#autoformat = 0
+"autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.json,*.graphql Prettier
+
 " 
 " Asgardian macros
 "
@@ -244,16 +262,14 @@ vnoremap <Leader>ir :call IndentReact()<CR>
 
 " Disables syntax highlight
 function! DisableHL()
-  syntax off
   set t_Co=0
   hi LineNr term=NONE
+  hi Constant term=NONE
+  hi Type term=NONE
 endfunction
 
 " Enables syntax highlight
 function! EnableHL()
-  syntax on
   set t_Co=256
   hi LineNr term=underline
 endfunction
-
-call DisableHL()
